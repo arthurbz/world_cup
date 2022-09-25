@@ -1,5 +1,5 @@
 INSERT INTO
-	tournament
+	tournaments
     ("Year", "Country", "Winner", "RunnersUp", "Third", "Fourth", "GoalsScored", "QualifiedTeams", "MatchesPlayed", "Attendance")
 VALUES
 	 (1930,'Uruguay','Uruguay','Argentina','USA','Yugoslavia',70,13,18,'590.549'),

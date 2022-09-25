@@ -1,10 +1,10 @@
-'use strict';
-const { DataTypes } = require('sequelize')
+"use strict";
+const { DataTypes } = require("sequelize")
 
 module.exports = {
     async up (queryInterface, Sequelize) {
         await queryInterface.createTable(
-            'match',
+            "matches",
             {
                 Id: {
                     type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ module.exports = {
                 Year: {
                     type: DataTypes.INTEGER,
                     allowNull: false,
-                    references: { model: "tournament", key: "Year" }
+                    references: { model: "tournaments", key: "Year" }
                 },
                 Datetime: {
                     type: DataTypes.DATE,
@@ -73,6 +73,6 @@ module.exports = {
     },
 
     async down (queryInterface, Sequelize) {
-        await queryInterface.dropTable('match');
+        await queryInterface.dropTable("matches");
     }
 };

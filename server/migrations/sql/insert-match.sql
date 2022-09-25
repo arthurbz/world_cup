@@ -1,5 +1,5 @@
 INSERT INTO
-	match
+	matches
     (
     "Year",
     "Datetime",

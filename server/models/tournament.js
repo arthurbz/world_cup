@@ -1,9 +1,9 @@
-const connection = require('../config/database');
-
-const { DataTypes } = require('sequelize');
+const Match = require("../models/match")
+const connection = require("../config/database");
+const { DataTypes } = require("sequelize");
 
 const Tournament = connection.define(
-    'tournament',
+    "tournament",
     {
         Id: {
             type: DataTypes.INTEGER,
@@ -58,4 +58,6 @@ const Tournament = connection.define(
     }
 );
 
+Tournament.hasOne(Match);
+Match.belongsTo(Tournament);
 module.exports = Tournament;

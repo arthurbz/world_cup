@@ -1,9 +1,9 @@
-const connection = require('../config/database');
-
-const { DataTypes } = require('sequelize');
+const Tournament = require("../models/tournament")
+const connection = require("../config/database");
+const { DataTypes } = require("sequelize");
 
 const Match = connection.define(
-    'match',
+    "match",
     {
         Id: {
             type: DataTypes.INTEGER,
@@ -14,7 +14,7 @@ const Match = connection.define(
             type: DataTypes.INTEGER,
             allowNull: false,
             unique: true,
-            references: { model: "tournament", key: "Year" }
+            references: { model: Tournament, key: "Year" }
         },
         Datetime: {
             type: DataTypes.DATE,
