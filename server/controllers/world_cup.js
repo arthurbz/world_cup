@@ -25,17 +25,6 @@ module.exports = app => {
     app.get("/worldcup/details/:year", async (req, res) => {
         try {
             const Year = req.params.year
-            const tournament = await Tournament.findOne(
-                {
-                    attributes: [
-                        "Country",
-                        "Winner",
-                        "RunnersUp",
-                    ],
-                    where: { Year },
-                }
-            )
-
             const match = await Match.findOne(
                 {
                     attributes: [
@@ -49,11 +38,15 @@ module.exports = app => {
                         "AwayTeamGoals"
                     ],
                     where: { Year },
+                    include: [{
+                        model: Tournament,
+                        attributes: ["Country", "Winner", "RunnersUp"]
+                    }]
                 }
             )
 
-            if (tournament)
-                res.status(200).json({ tournament, match })
+            if (match)
+                res.status(200).json({ details: match })
             else
                 res.status(200).json("Perhaps there was no WorldCup that year :P")
         } catch (error) {

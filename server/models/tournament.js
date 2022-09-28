@@ -7,12 +7,12 @@ const Tournament = connection.define(
     {
         Id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
             autoIncrement: true
         },
         Year: {
             type: DataTypes.INTEGER,
             unique: true,
+            primaryKey: true,
             allowNull: false
         },
         Country: {

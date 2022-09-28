@@ -7,13 +7,13 @@ const Match = connection.define(
     {
         Id: {
             type: DataTypes.INTEGER,
-            primaryKey: true,
             autoIncrement: true
         },
         Year: {
             type: DataTypes.INTEGER,
             allowNull: false,
             unique: true,
+            primaryKey: true,
             references: { model: Tournament, key: "Year" }
         },
         Datetime: {

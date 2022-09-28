@@ -9,19 +9,19 @@
                 SEARCH
             </button>
         </div>
-        <div v-if="tournament && match && found">
+        <div v-if="details && found">
             <h3 class="mt bold">Tournament</h3>
-            <tr><span class="bold ml">Host Country:</span> {{ tournament.Country }}</tr>
-            <tr><span class="bold ml">Winner:</span> {{ tournament.Winner }}</tr>
-            <tr><span class="bold ml">Runners Up:</span> {{ tournament.RunnersUp }}</tr>
+            <tr><span class="bold ml">Host Country:</span> {{ details.tournament.Country }}</tr>
+            <tr><span class="bold ml">Winner:</span> {{ details.tournament.Winner }}</tr>
+            <tr><span class="bold ml">Runners Up:</span> {{ details.tournament.RunnersUp }}</tr>
 
             <h3 class="mt bold">About the match:</h3>
-            <tr><span class="bold ml">Date and time:</span> {{ match.Datetime }}</tr>
-            <tr><span class="bold ml">Stadium:</span> {{ match.Stadium }}</tr>
-            <tr><span class="bold ml">Teams:</span> {{ match.HomeTeam }} x {{ match.AwayTeam }}</tr>
+            <tr><span class="bold ml">Date and time:</span> {{ details.Datetime }}</tr>
+            <tr><span class="bold ml">Stadium:</span> {{ details.Stadium }}</tr>
+            <tr><span class="bold ml">Teams:</span> {{ details.HomeTeam }} x {{ details.AwayTeam }}</tr>
             <tr>
                 <span class="bold ml">Score:</span>
-                {{ match.HomeTeamInitials }} {{ match.HomeTeamGoals }} x {{ match.AwayTeamGoals }} {{ match.AwayTeamInitials }}
+                {{ details.HomeTeamInitials }} {{ details.HomeTeamGoals }} x {{ details.AwayTeamGoals }} {{ details.AwayTeamInitials }}
             </tr>
         </div>
         <div v-else>
@@ -37,8 +37,7 @@ export default {
     data() {
         return {
             year: "",
-            tournament: null,
-            match: null,
+            details: "",
             found: false,
         }
     },
@@ -46,9 +45,7 @@ export default {
         getData() {
             axios.get("http://localhost:5000/worldcup/details/" + this.year)
             .then((response) => {
-                const data = response.data
-                this.tournament = data.tournament
-                this.match = data.match
+                this.details = response.data.details
                 this.found = true
             }).catch((error) => {
                 this.found = false
