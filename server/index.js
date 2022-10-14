@@ -8,10 +8,13 @@ const PORT = 5000
 async function main() {
     const app = express()
     app.use(cors())
-    app.use(bodyParser.json())
 
     await configureConnection()
-    consign().include('controllers').into(app)
+    consign()
+    .include('auth.js')
+    .then('libs/middlewares.js')
+    .then('controllers')
+    .into(app)
 
     app.listen(PORT, () => {
         console.log(`Running on port ${PORT}`)

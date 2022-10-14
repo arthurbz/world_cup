@@ -63,7 +63,7 @@ module.exports = {
                 Referee: {
                     type: DataTypes.STRING,
                     default: null
-                },
+                }
             },
             {
                 createdAt: false,

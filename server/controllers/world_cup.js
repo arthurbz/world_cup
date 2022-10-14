@@ -3,6 +3,7 @@ const Tournament = require("../models/tournament")
 const Match = require("../models/match")
 
 module.exports = app => {
+    app.route('/worldcup/*').all( app.auth.authenticate())
     app.get("/worldcup/:year", async (req, res) => {
         try {
             const Year = req.params.year
@@ -55,6 +56,7 @@ module.exports = app => {
         }
     })
 
+    app.route('/worldcup/finals/:year').all( app.auth.authenticate())
     app.get("/worldcup/finals/:year", async (req, res) => {
         try {
             const Year = req.params.year
